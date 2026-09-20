@@ -14,7 +14,7 @@ private:
 
 	void _CalculateCreditPoints() {
 
-		if (_Marks >= 96) {
+		if (_Marks >= 96 && _Marks < 100) {
 			_Points = 4;
 			_Grade = "A+";
 		}
@@ -62,7 +62,7 @@ private:
 			_Points = 1;
 			_Grade = "D-";
 		}
-		else if (_Marks < 50) {
+		else if (_Marks < 50 && _Marks > 0) {
 			_Points = 0;
 			_Grade = "F";
 		}
@@ -121,6 +121,9 @@ public:
 	}
 
 
+	float GetPoints() {
+		return _Points * _CreditHours;
+	}
 
 };
 
