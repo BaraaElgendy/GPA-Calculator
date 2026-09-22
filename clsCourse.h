@@ -14,7 +14,7 @@ private:
 
 	void _CalculateCreditPoints() {
 
-		if (_Marks >= 96 && _Marks < 100) {
+		if (_Marks >= 96 && _Marks <= 100) {
 			_Points = 4;
 			_Grade = "A+";
 		}
@@ -83,6 +83,7 @@ public:
 
 	}
 
+	clsCourse(){}
 
 	void CourseName(string Name) {
 		_CourseName = Name;

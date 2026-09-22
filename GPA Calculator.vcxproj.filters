@@ -26,5 +26,8 @@
     <ClInclude Include="clsStudent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="clsMainMenuUI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
