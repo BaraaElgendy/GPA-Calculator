@@ -3,6 +3,7 @@
 #include"clsStudent.h"
 #include"clsMainMenuUI.h"
 #include"clsCalcGPAScreen.h"
+#include"clsCalcCGPAScreen.h"
 using namespace std;
 
 
@@ -25,7 +26,7 @@ int main()
 
 
 	clsMainMenuUI::ShowMainMenuScreen();
-	//clsCalcGPAScreen::ShowCalcGPAScreen();
+	//clsCalcCGPAScreen::ShowCalcCGPAScreen();
 
 
 }

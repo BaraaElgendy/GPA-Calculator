@@ -8,7 +8,7 @@ using namespace std;
 class clsCalcGPAScreen
 {
 
-private:
+protected:
 
 	static void _EnterCourseInfo(clsStudent& Student) {
 
@@ -37,7 +37,7 @@ public:
 		string StudentName = clsInputValidate::ReadString();
 
 		cout << "\nEnter What Year Are You In: ";
-		short Year = clsInputValidate::ReadNumber<short>();
+		short Year = clsInputValidate::ReadNumberBetween<short>(1, 4);
 
 		clsStudent Student(StudentName, Year);
 

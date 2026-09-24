@@ -2,6 +2,7 @@
 #include<iostream>
 #include"clsInputValidate.h"
 #include"clsCalcGPAScreen.h"
+#include"clsCalcCGPAScreen.h"
 using namespace std;
 
 class clsMainMenuUI
@@ -33,7 +34,7 @@ private:
 			break;
 			
 		case enCalcCGPA:
-			cout << "calculate cgpa func";
+			clsCalcCGPAScreen::ShowCalcCGPAScreen();
 			break;
 		case enFindResult:
 			cout<<"find result func";
