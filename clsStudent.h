@@ -27,6 +27,8 @@ public:
 		_Year = Year;
 	}
 
+	clsStudent(){}
+
 	string Name() {
 		return _StudentName;
 	}
@@ -98,35 +100,95 @@ public:
 		return _GPA;
 	}
 
+	//void PrintStudentCard() {
+
+	//	//cout << "\t\t-----------------------------------------------------\n";
+
+	//	cout << "\t\t\t Student Name: " << Name() << "\n";
+	//	cout << "\t\t\t------------------------------------------------\n";
+
+
+	//	cout << "\t\t\t| " << left << setw(18) << "Course Name"
+	//		<< "| " << setw(7) << "Hours"
+	//		<< "| " << setw(7) << "Marks"
+	//		<< "| " << setw(7) << "Grade"
+	//		<< "|\n";
+
+	//	cout << "\t\t\t|----------------------------------------------|\n";
+
+
+	//	for (clsCourse& Course : _Courses) {
+
+	//		cout << "\t\t\t| " << left << setw(18) << Course.GetCourseName()
+	//			<< "| " << setw(7) << Course.GetCreditHours()
+	//			<< "| " << setw(7) << Course.GetMarks()
+	//			<< "| " << setw(7) << Course.GetGrade()
+	//			<< "|\n";
+	//	}
+	//	cout << "\t\t\t------------------------------------------------\n";
+	//	
+	//	cout << "\t\t\t| " << left << "Total:\t" << "(" << _Courses.size() << ")" << " Courses  " << setw(5) << " | " << _TotalCreditHours << " Hours" << "  |\n";
+	//	cout << "\t\t\t------------------------------------------------\n";
+
+
+
+	//	cout << "\n\t\t\t Highest Mark: " << GetHighestCourse().GetCourseName() << " --> " << GetHighestCourse().GetGrade() << endl;
+	//	cout << "\t\t\t GPA: " << GPA() << endl;
+
+	//}
+
+
 	void PrintStudentCard() {
+		// خط فاصل موحد بعرض 52 حرف
+		string Separator = "\t\t\t+-------------------+--------+--------+--------+\n";
+		string SolidLine = "\t\t\t=================================================\n";
 
-		//cout << "\t\t-----------------------------------------------------\n";
+		cout << "\n";
+		cout << SolidLine;
+		cout << "\t\t\t\t  STUDENT ACADEMIC REPORT CARD\n";
+		cout << SolidLine;
+		cout << "\t\t\t  Student Name : " << Name() << "\n";
+		cout << SolidLine;
 
-		cout << "\t\t\t Student Name: " << Name() << "\n";
-		cout << "\t\t\t------------------------------------------------\n";
-
-
+		// Header
 		cout << "\t\t\t| " << left << setw(18) << "Course Name"
 			<< "| " << setw(7) << "Hours"
 			<< "| " << setw(7) << "Marks"
 			<< "| " << setw(7) << "Grade"
 			<< "|\n";
 
-		cout << "\t\t\t|----------------------------------------------|\n";
+		cout << Separator;
 
-
+		// Data Rows
 		for (clsCourse& Course : _Courses) {
-
 			cout << "\t\t\t| " << left << setw(18) << Course.GetCourseName()
 				<< "| " << setw(7) << Course.GetCreditHours()
 				<< "| " << setw(7) << Course.GetMarks()
 				<< "| " << setw(7) << Course.GetGrade()
 				<< "|\n";
 		}
-		cout << "\t\t\t------------------------------------------------\n";
-		cout << "\n\t\t\t Highest Course Mark: " << GetHighestCourse().GetCourseName() << " --> " << GetHighestCourse().GetGrade() << endl;
-		cout << "\t\t\t GPA: " << GPA() << endl;
 
+		cout << Separator;
+
+		// Summary Row (Total Hours & Courses Count)
+		cout << "\t\t\t| " << left << setw(18) << ("Total: " + to_string(_Courses.size()) + " Courses")
+			<< "| " << setw(7) << _TotalCreditHours
+			<< "| " << setw(7) << "-"
+			<< "| " << setw(7) << "-"
+			<< "|\n";
+
+		cout << Separator;
+
+		// Footer Card
+		cout << "\n\t\t\t----------------- ACADEMIC SUMMARY -----------------\n\n";
+		if (!_Courses.empty()) {
+			cout << "\t\t\t  Highest Mark : " << GetHighestCourse().GetCourseName()
+				<< " (" << GetHighestCourse().GetMarks() << " -> " << GetHighestCourse().GetGrade() << ")\n";
+		}
+		cout << "\t\t\t  Semester GPA : " << fixed << setprecision(2) << GPA() << " / 4.00\n";
+		cout << "\n\t\t\t----------------------------------------------------\n\n";
 	}
+
+
 };
 

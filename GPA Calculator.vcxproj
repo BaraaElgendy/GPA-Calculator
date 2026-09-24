@@ -142,6 +142,8 @@
     <ClCompile Include="GPA Calculator.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="clsCalcCGPAScreen.h" />
+    <ClInclude Include="clsCalcGPAScreen.h" />
     <ClInclude Include="clsCourse.h" />
     <ClInclude Include="clsMainMenuUI.h" />
     <ClInclude Include="clsStudent.h" />

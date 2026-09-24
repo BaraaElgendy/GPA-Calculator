@@ -29,5 +29,11 @@
     <ClInclude Include="clsMainMenuUI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="clsCalcGPAScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="clsCalcCGPAScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
