@@ -35,5 +35,8 @@
     <ClInclude Include="clsCalcCGPAScreen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="clsShowAllHistoryScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

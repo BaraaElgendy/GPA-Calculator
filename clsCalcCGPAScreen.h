@@ -5,7 +5,6 @@ class clsCalcCGPAScreen : protected clsCalcGPAScreen
 
 public:
 
-
 	static void ShowCalcCGPAScreen() {
 
 		cout << "\nEnter Your Name: ";
@@ -39,10 +38,10 @@ public:
 
 		Student.CalculateGPA();
 		Student.CalculateCGPA();
+		Student.AddStudentToFile();
 		Student.PrintStudentCard();
 
 	}
-
 
 };
 

@@ -3,6 +3,7 @@
 #include"clsInputValidate.h"
 #include"clsCalcGPAScreen.h"
 #include"clsCalcCGPAScreen.h"
+#include"clsShowAllHistoryScreen.h"
 using namespace std;
 
 class clsMainMenuUI
@@ -18,12 +19,12 @@ private:
 		clsMainMenuUI::ShowMainMenuScreen();
 	}
 
-	static short ReadMainMenuOption(string Message) {
+	static short _ReadMainMenuOption(string Message) {
 		cout << Message;
 		return clsInputValidate::ReadNumberBetween<short>(1, 4);
 	}
 
-	static void PerformMainMenuOption(enChoice Choice) {
+	static void _PerformMainMenuOption(enChoice Choice) {
 
 		system("cls");
 
@@ -40,7 +41,7 @@ private:
 			cout<<"find result func";
 			break;
 		case enShowHistory:
-			cout << "show history func";
+			clsShowAllHistoryScreen::ShowAllHistoryScreen();
 			break;
 		}
 
@@ -57,10 +58,10 @@ public:
 		cout << "\t\t\t\t======================================\n";
 		cout << "\t\t\t\t  [1] Calculate GPA\n";
 		cout << "\t\t\t\t  [2] Calculate CGPA\n";
-		cout << "\t\t\t\t  [3] Find Student Result\n";
-		cout << "\t\t\t\t  [4] Show Calculations History\n";
+		cout << "\t\t\t\t  [3] Find Student Result(s)\n";
+		cout << "\t\t\t\t  [4] Show All Calculations History\n";
 		cout << "\t\t\t\t======================================\n";
-		PerformMainMenuOption((enChoice)ReadMainMenuOption("\t\t\t\tEnter Your Choice [1 to 4] "));
+		_PerformMainMenuOption((enChoice)_ReadMainMenuOption("\t\t\t\tEnter Your Choice [1 to 4] "));
 
 	}
 

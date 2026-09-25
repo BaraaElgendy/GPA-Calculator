@@ -4,6 +4,9 @@
 #include"clsCourse.h"
 #include<string>
 #include <iomanip>
+#include<fstream>
+#include"clsString.h"
+#include"clsDate.h"
 using namespace std;
 
 class clsStudent
@@ -27,7 +30,69 @@ private:
 	float _PreviousCreditHours = 0;
 	
 
-	vector<clsCourse> _Courses;
+	 vector<clsCourse> _Courses;
+
+	 string _DateTime;
+
+	static clsStudent _ConvertLineToStudentObject(string Line,string Seperator = "#//#") {
+
+		 vector<string> vStudentData;
+		 vector<clsCourse> vTempCourses;
+
+		 vStudentData = clsString::Split(Line, Seperator);
+
+		 for (int i = 5; i < vStudentData.size(); i += 3) {
+
+			 clsCourse Course(vStudentData[i], stoi(vStudentData[i + 1]), stof(vStudentData[i + 2]));
+
+			 vTempCourses.push_back(Course);
+
+		 }
+
+
+		 return clsStudent(vStudentData[1], stoi(vStudentData[2]), stof(vStudentData[3]), stof(vStudentData[4]), vTempCourses,vStudentData[0]);
+
+	 }
+
+	static string _ConvertStudentObjectToLine(clsStudent Student, vector<clsCourse> Courses,string Seperator = "#//#") {
+
+		
+		string DataLine = "";
+		DataLine += clsDate::GetSystemDateTime() + Seperator;
+		DataLine += Student.Name() + Seperator;
+		DataLine += to_string(Student._Year) + Seperator;
+		DataLine += to_string(Student.GPA()) + Seperator;
+		DataLine += to_string(Student.CGPA()) + Seperator;
+
+		for (clsCourse Course : Courses) {
+
+			DataLine += Course.GetCourseName() + Seperator;
+			DataLine += to_string(Course.GetCreditHours()) + Seperator;
+			DataLine += to_string(Course.GetMarks()) + Seperator;
+
+		}
+
+		DataLine.erase(DataLine.length() - Seperator.length());
+
+		return DataLine;
+
+	};
+
+	static void _AddDataLineToFile(string DataLine) {
+
+		fstream MyFile;
+
+		MyFile.open("History.txt", ios::out | ios::app); //append Mode
+
+		if (MyFile.is_open()) {
+
+			MyFile << DataLine << endl;
+
+
+			MyFile.close();
+		}
+	}
+
 
 public:
 
@@ -35,6 +100,17 @@ public:
 		_StudentName = Name;
 		_Year = Year;
 	}
+
+	clsStudent(string Name, short Year, float GPA, float CGPA, vector<clsCourse> Courses,string DateTime) {
+
+		_DateTime = DateTime;
+		_StudentName = Name;
+		_Year = Year;
+		_GPA = GPA;
+		_NewCGPA = CGPA;
+		_Courses = Courses;
+	}
+
 
 	clsStudent(){}
 
@@ -58,6 +134,39 @@ public:
 
 		default: return "Unknown Year";
 		}
+	}
+
+	string DateTime() {
+		return _DateTime;
+	}
+
+	static vector <clsStudent> _LoadStudentDataFromFile() {
+
+		fstream MyFile;
+		vector <clsStudent> vStudents;
+
+		MyFile.open("History.txt", ios::in); //read Mode
+
+		if (MyFile.is_open())
+		{
+
+			string Line;
+
+			while (getline(MyFile, Line))
+			{
+
+				vStudents.push_back(_ConvertLineToStudentObject(Line));
+
+
+			}
+
+			MyFile.close();
+
+
+
+		}
+
+		return vStudents;
 	}
 
 
@@ -146,7 +255,7 @@ public:
 	}
 
 	void PrintStudentCard() {
-		// خط فاصل موحد بعرض 52 حرف
+
 		string Separator = "\t\t\t+-------------------+--------+--------+--------+\n";
 		string SolidLine = "\t\t\t=================================================\n";
 
@@ -158,7 +267,6 @@ public:
 		cout << "\t\t\t  Student Year : " << Year() << "\n";
 		cout << SolidLine;
 
-		// Header
 		cout << "\t\t\t| " << left << setw(18) << "Course Name"
 			<< "| " << setw(7) << "Hours"
 			<< "| " << setw(7) << "Marks"
@@ -167,7 +275,7 @@ public:
 
 		cout << Separator;
 
-		// Data Rows
+		
 		for (clsCourse& Course : _Courses) {
 			cout << "\t\t\t| " << left << setw(18) << Course.GetCourseName()
 				<< "| " << setw(7) << Course.GetCreditHours()
@@ -178,7 +286,7 @@ public:
 
 		cout << Separator;
 
-		// Summary Row (Total Hours & Courses Count)
+		
 		cout << "\t\t\t| " << left << setw(18) << ("Total: " + to_string(_Courses.size()) + " Courses")
 			<< "| " << setw(7) << _CurrentSemesterCreditHours
 			<< "| " << setw(7) << "-"
@@ -187,21 +295,31 @@ public:
 
 		cout << Separator;
 
-		// Footer Card
 		cout << "\n\t\t\t----------------- ACADEMIC SUMMARY -----------------\n\n";
+	
 		if (!_Courses.empty()) {
+		
 			cout << "\t\t\t  Highest Mark : " << GetHighestCourse().GetCourseName()
 				<< " (" << GetHighestCourse().GetMarks() << " -> " << GetHighestCourse().GetGrade() << ")\n";
+	
 		}
 		cout << "\t\t\t  Semester GPA : " << fixed << setprecision(2) << GPA() << " / 4.00\n";
 		
 		if (_PreviousCreditHours > 0) {
+
 			cout << "\t\t\t  Cumulative CGPA : " << fixed << setprecision(2) << CGPA() << " / 4.00\n";
+		
 		};
 
 		cout << "\n\t\t\t----------------------------------------------------\n\n";
+
+		
 	}
 
+	void AddStudentToFile() {
 
+		_AddDataLineToFile(_ConvertStudentObjectToLine(*this, _Courses));
+
+	}
 };
 

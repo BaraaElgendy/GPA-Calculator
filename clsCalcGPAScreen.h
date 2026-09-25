@@ -54,6 +54,7 @@ public:
 		} while (tolower(Choice) == 'y');
 
 		Student.CalculateGPA();
+		Student.AddStudentToFile();
 		Student.PrintStudentCard();
 
 	}
