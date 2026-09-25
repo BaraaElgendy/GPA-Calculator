@@ -265,6 +265,7 @@ public:
 		cout << SolidLine;
 		cout << "\t\t\t  Student Name : " << Name() << "\n";
 		cout << "\t\t\t  Student Year : " << Year() << "\n";
+		cout << "\t\t\t  Date/Time : " << DateTime() << "\n";
 		cout << SolidLine;
 
 		cout << "\t\t\t| " << left << setw(18) << "Course Name"

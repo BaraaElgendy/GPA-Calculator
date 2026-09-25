@@ -4,6 +4,7 @@
 #include"clsCalcGPAScreen.h"
 #include"clsCalcCGPAScreen.h"
 #include"clsShowAllHistoryScreen.h"
+#include"clsFindStudentResults.h"
 using namespace std;
 
 class clsMainMenuUI
@@ -38,7 +39,7 @@ private:
 			clsCalcCGPAScreen::ShowCalcCGPAScreen();
 			break;
 		case enFindResult:
-			cout<<"find result func";
+			clsFindStudentResults::ShowFindStudentResultsScreen();
 			break;
 		case enShowHistory:
 			clsShowAllHistoryScreen::ShowAllHistoryScreen();

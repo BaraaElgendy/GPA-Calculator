@@ -145,6 +145,7 @@
     <ClInclude Include="clsCalcCGPAScreen.h" />
     <ClInclude Include="clsCalcGPAScreen.h" />
     <ClInclude Include="clsCourse.h" />
+    <ClInclude Include="clsFindStudentResults.h" />
     <ClInclude Include="clsMainMenuUI.h" />
     <ClInclude Include="clsShowAllHistoryScreen.h" />
     <ClInclude Include="clsStudent.h" />
