@@ -62,7 +62,7 @@ private:
 			_Points = 1;
 			_Grade = "D-";
 		}
-		else if (_Marks < 50 && _Marks > 0) {
+		else if (_Marks < 50 && _Marks >= 0) {
 			_Points = 0;
 			_Grade = "F";
 		}

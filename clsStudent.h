@@ -194,7 +194,11 @@ public:
 				<< " (" << GetHighestCourse().GetMarks() << " -> " << GetHighestCourse().GetGrade() << ")\n";
 		}
 		cout << "\t\t\t  Semester GPA : " << fixed << setprecision(2) << GPA() << " / 4.00\n";
-		cout << "\t\t\t  Cumulative CGPA : " << fixed << setprecision(2) << CGPA() << " / 4.00\n";
+		
+		if (_PreviousCreditHours > 0) {
+			cout << "\t\t\t  Cumulative CGPA : " << fixed << setprecision(2) << CGPA() << " / 4.00\n";
+		};
+
 		cout << "\n\t\t\t----------------------------------------------------\n\n";
 	}
 
