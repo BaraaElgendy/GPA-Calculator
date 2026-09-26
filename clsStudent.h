@@ -28,7 +28,6 @@ private:
 	
 	float _CurrentSemesterCreditHours = 0;
 	float _PreviousCreditHours = 0;
-	
 
 	 vector<clsCourse> _Courses;
 
@@ -41,7 +40,7 @@ private:
 
 		 vStudentData = clsString::Split(Line, Seperator);
 
-		 for (int i = 5; i < vStudentData.size(); i += 3) {
+		 for (int i = 5; i < vStudentData.size() - 1; i += 3) {
 
 			 clsCourse Course(vStudentData[i], stoi(vStudentData[i + 1]), stof(vStudentData[i + 2]));
 
@@ -50,7 +49,7 @@ private:
 		 }
 
 
-		 return clsStudent(vStudentData[1], stoi(vStudentData[2]), stof(vStudentData[3]), stof(vStudentData[4]), vTempCourses,vStudentData[0]);
+		 return clsStudent(vStudentData[1], stoi(vStudentData[2]), stof(vStudentData[3]), stof(vStudentData[4]), vTempCourses, vStudentData[0], stof(vStudentData.back()));
 
 	 }
 
@@ -72,7 +71,7 @@ private:
 
 		}
 
-		DataLine.erase(DataLine.length() - Seperator.length());
+		DataLine += to_string(Student._CurrentSemesterCreditHours);
 
 		return DataLine;
 
@@ -101,7 +100,7 @@ public:
 		_Year = Year;
 	}
 
-	clsStudent(string Name, short Year, float GPA, float CGPA, vector<clsCourse> Courses,string DateTime) {
+	clsStudent(string Name, short Year, float GPA, float CGPA, vector<clsCourse> Courses,string DateTime,float SemesterHours) {
 
 		_DateTime = DateTime;
 		_StudentName = Name;
@@ -109,6 +108,8 @@ public:
 		_GPA = GPA;
 		_NewCGPA = CGPA;
 		_Courses = Courses;
+		_CurrentSemesterCreditHours = SemesterHours;
+
 	}
 
 
@@ -306,7 +307,7 @@ public:
 		}
 		cout << "\t\t\t  Semester GPA : " << fixed << setprecision(2) << GPA() << " / 4.00\n";
 		
-		if (_PreviousCreditHours > 0) {
+		if (CGPA() > 0) {
 
 			cout << "\t\t\t  Cumulative CGPA : " << fixed << setprecision(2) << CGPA() << " / 4.00\n";
 		
