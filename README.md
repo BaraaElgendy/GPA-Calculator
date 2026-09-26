@@ -44,6 +44,12 @@ Unlike course-guided projects, this system was designed and built independently 
 | **Separation of Concerns** | Each screen (Calculate GPA, Calculate CGPA, Find Result, Show History) is its own class, fully decoupled from data logic |
 | **Static Utility Classes** | Reusable helpers (`clsString`, `clsInputValidate`) provide validation and string manipulation without needing object instantiation |
 
+## 🏛️ System Architecture Diagram
+
+Click the diagram to explore the interactive visual architecture:
+
+[![System Architecture Diagram](diagram/diagram.png)](https://gitdiagram.com/baraaelgendy/gpa-calculator)
+
 ---
 
 ## 📁 Project Structure
@@ -93,7 +99,3 @@ This project wasn't assigned — it was built to solve a problem the developer a
 
 Actively maintained — new features and refinements are added as the project's data structures and validation logic are extended.
 
-
-## 🏛️ System Architecture
-
-![System Architecture](diagram/diagram.png)
