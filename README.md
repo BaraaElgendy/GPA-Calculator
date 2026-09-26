@@ -92,3 +92,8 @@ This project wasn't assigned — it was built to solve a problem the developer a
 ## 📌 Status
 
 Actively maintained — new features and refinements are added as the project's data structures and validation logic are extended.
+
+
+## 🏛️ System Architecture
+
+![System Architecture](diagram/diagram.png)
