@@ -85,6 +85,7 @@ private:
 
 		if (MyFile.is_open()) {
 
+			
 			MyFile << DataLine << endl;
 
 
@@ -156,9 +157,9 @@ public:
 			while (getline(MyFile, Line))
 			{
 
-				vStudents.push_back(_ConvertLineToStudentObject(Line));
-
-
+				if (Line != "") {
+					vStudents.push_back(_ConvertLineToStudentObject(Line));
+				}
 			}
 
 			MyFile.close();
